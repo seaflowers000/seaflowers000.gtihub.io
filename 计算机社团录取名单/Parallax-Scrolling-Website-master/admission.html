@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年录取名单</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A855F7',    // 亮紫色主色
+                        secondary: '#7C3AED',  // 中紫色辅助色
+                        tertiary: '#6D28D9',   // 深紫色
+                        darkPurple: '#1E1B4B',  // 深紫背景
+                        lightPurple: '#E8D5FF', // 浅紫色文本
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-glow {
+                text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+            }
+            .card-shadow {
+                box-shadow: 0 15px 30px -5px rgba(168, 85, 247, 0.1), 0 10px 15px -5px rgba(168, 85, 247, 0.05);
+            }
+            .neon-border {
+                position: relative;
+                z-index: 1;
+            }
+            .neon-border::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: 1px solid transparent;
+                border-radius: inherit;
+                background-image: linear-gradient(#A855F7, #7C3AED);
+                background-size: 200% 200%;
+                animation: borderGlow 3s ease infinite;
+                z-index: -1;
+                filter: blur(5px);
+                opacity: 0.7;
+            }
+            @keyframes borderGlow {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        }
+
+        /* 基础样式 */
+        body {
+            background: #1E1B4B;
+            overflow-x: hidden;
+        }
+
+        /* 卡片悬停动效 */
+        .admission-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .admission-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -8px rgba(168, 85, 247, 0.2), 0 10px 20px -5px rgba(168, 85, 247, 0.1);
+        }
+    </style>
+</head>
+<body class="font-inter text-lightPurple min-h-screen">
+    <!-- 动态星云背景 -->
+    <canvas id="nebula-bg" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
+
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-darkPurple/90 backdrop-blur-[10px]">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+               
+                <span class="font-bold text-xl text-white">编程爱好者协会</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="text-lightPurple/80 hover:text-primary transition-colors duration-300">
+                    <i class="fa fa-arrow-left mr-1"></i> 返回首页
+                </a>
+                <span class="text-primary font-medium">录取名单</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="pt-20 pb-16 container mx-auto px-4 relative z-10">
+        <div class="text-center mb-12">
+            <h1 class="text-[clamp(1.8rem,4vw,3.5rem)] font-bold mb-4 text-glow">
+                2025年新成员<br><span class="text-primary">录取名单</span>
+            </h1>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+            <p class="text-lightPurple/70 max-w-2xl mx-auto">恭喜以下11名同学正式加入编程爱好者协会，期待与你共同成长</p>
+        </div>
+
+        <!-- 名单统计 -->
+        <div class="flex justify-center items-center mb-10 text-sm text-lightPurple/60">
+            <div>共 <span class="font-bold text-primary">11</span> 名新成员</div>
+        </div>
+
+        <!-- 录取名单卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="members-container">
+            <!-- 成员名单 -->
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">冯黎芸</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：女</p>
+                    <p class="text-lightPurple/70 text-sm">人工智能</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">严梦涵</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：女</p>
+                    <p class="text-lightPurple/70 text-sm">人工智能</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">严子涵</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：女</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">吉星语</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：女</p>
+                    <p class="text-lightPurple/70 text-sm">大数据</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">陈嘉欣</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：女</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">税蓥莹</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：女</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">刘金鹏</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：男</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">李新宇</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：男</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">张奥宇</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：男</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">胡敖</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：男</p>
+                    <p class="text-lightPurple/70 text-sm">计算机科学与技术</p>
+                </div>
+            </div>
+
+            <div class="admission-card bg-darkPurple/60 rounded-2xl overflow-hidden card-shadow neon-border">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-1">彭思源</h3>
+                    <p class="text-lightPurple/60 text-base mb-1">性别：男</p>
+                    <p class="text-lightPurple/70 text-sm">软件工程</p>
+                </div>
+            </div>
+
+           
+            </div>
+        </div>
+
+        <!-- 返回按钮 -->
+        <div class="text-center mt-16">
+            <a href="index.html" class="inline-flex items-center px-8 py-3 rounded-full bg-primary/10 border border-primary/30 text-primary font-bold hover:bg-primary/20 transition-all duration-300">
+                <i class="fa fa-arrow-left mr-3"></i> 返回首页
+            </a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-darkPurple/80 border-t border-primary/20 py-8 mt-12 z-10">
+        <div class="container mx-auto px-4 text-center text-lightPurple/50 text-sm">
+            <p>CodeNexus 计算机社团 © 2024 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        // 动态星云背景（紫色系）
+        const canvas = document.getElementById('nebula-bg');
+        const ctx = canvas.getContext('2d');
+
+        // 调整Canvas尺寸
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 星云粒子参数（紫色系）
+        const particles = [];
+        const particleCount = 150;
+
+        // 初始化粒子
+        function initParticles() {
+            particles.length = 0;
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * 1.5,
+                    speedY: (Math.random() - 0.5) * 1.5,
+                    // 紫色系粒子颜色
+                    color: `hsla(${260 + Math.random() * 40}, 100%, 70%, ${0.5 + Math.random() * 0.3})`,
+                    opacity: 0.7 + Math.random() * 0.3,
+                    trail: []
+                });
+            }
+        }
+
+        // 绘制星云
+        function drawNebula() {
+            // 紫色渐变背景
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#1E1B4B');
+            gradient.addColorStop(1, '#2D2B63');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制粒子与轨迹
+            particles.forEach(particle => {
+                // 粒子位置更新
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                // 边界检测
+                if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+
+                // 添加轨迹
+                particle.trail.push({ x: particle.x, y: particle.y });
+                if (particle.trail.length > 15) particle.trail.shift();
+
+                // 绘制轨迹（紫色渐变）
+                ctx.beginPath();
+                ctx.moveTo(particle.trail[0].x, particle.trail[0].y);
+                for (let i = 1; i < particle.trail.length; i++) {
+                    const opacity = 0.15 + (15 - i) * 0.05;
+                    ctx.strokeStyle = `rgba(${particle.color.split('(')[1].split(')')[0]}, ${opacity})`;
+                    ctx.lineTo(particle.trail[i].x, particle.trail[i].y);
+                    ctx.lineWidth = particle.radius * 0.7;
+                    ctx.stroke();
+                }
+
+                // 绘制粒子
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+            });
+        }
+
+        // 动画循环
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawNebula();
+            requestAnimationFrame(animate);
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+            animate();
+            
+            // 添加页面载入动画
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 1s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 300);
+        });
+    </script>
+</body>
+</html>
