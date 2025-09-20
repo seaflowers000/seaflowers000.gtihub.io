@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Parallax Scrolling Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo"><img src="./images/lo.png" alt=""></a>
+    <ul>
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="./images/1.jpg">About</a></li>
+      <li><a href="#">Work</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </header>
+  <section>
+    <img src="images/stars.png" id="stars">
+    <img src="images/moon.png" id="moon">
+    <img src="images/mountains_behind.png" id="mountains_behind">
+    <h2 id="text">编程爱好者协会</h2>
+    <a href="./admission.html" id="btn">录取名单</a>
+    <img src="images/mountains_front.png" id="mountains_front">
+  </section>
+  <div class="sec" id="sec">
+    <h2>编程爱好者协会</h2>
+    <p>致每一位亲爱的学弟学妹：</p>
+     <p>你好！</p>
+     <p>在这里我们由衷的表示很荣幸能与大家结识，我们也很感激你们能够坚定的选择我们的社团，无论是你们是对编程充满热情也好、希望认识更多优秀的学长学姐也好、希望尝试更多的新鲜事物也好、亦或者是单纯被我们招新时的热情所感染——每一种选择都值得珍惜，每一种相遇都自有其意义。
+
+我们深知，刚踏入大学校园的你们，心中既充满对未知的憧憬，也难免带着些许迷茫。而我们所做的每一份努力，就是希望为你们提供一个温暖的归属，一个能自由探索、成长和发光的地方。在这里，你不仅可以学到实用的编程技能、参与有趣的项目开发，更能找到一群志同道合的伙伴，一起熬夜调试代码，一起分享成功的喜悦，一起面对挫折并互相鼓励。  
+
+也许现在的你还会怀疑自己是否足够“优秀”，是否能够跟上大家的脚步。请放下这些顾虑——社团的意义从来不是比拼谁更厉害，而是陪伴每一个人，从零开始，一步步走向更好的自己。我们期待看到的，不是你已经掌握了多少，而是你愿意尝试多少、分享多少、坚持多少。  
+
+所以，请勇敢地拥抱这次开始吧。积极参与接下来的社团活动，主动认识身边那个也许还有点陌生的同学，大胆提出你的每一个想法和疑问。这一年，愿你们能在这里收获知识、友谊、勇气，甚至是一次改变方向的契机。  
+
+编程的世界很大，未来的可能性也很多，而我们很高兴，能陪你们一起走过这一段。  
+
+敬请期待，  
+编程爱好者协会  
+随时间变化  
+
+——期待与你相见，一起创造不一样的故事。</p>
+  </div>
+
+  <script>
+    let stars = document.getElementById('stars')
+    let moon = document.getElementById('moon')
+    let mountains_behind = document.getElementById('mountains_behind')
+    let text = document.getElementById('text')
+    let btn = document.getElementById('btn')
+    let mountains_front = document.getElementById('mountains_front')
+    let header = document.querySelector('header')
+
+    window.addEventListener('scroll', function(){
+      let value = window.scrollY;
+      stars.style.left = value * 0.25 + 'px'
+      moon.style.top = value * 1.05 + 'px'
+      mountains_behind.style.top = value * 0.5 + 'px'
+      mountains_front.style.top = value * 0 + 'px'
+      text.style.marginRight = value * 4 + 'px'
+      text.style.marginTop = value * 1.5 + 'px'
+      btn.style.marginTop = value * 1.5 + 'px'
+      header.style.top = value * 0.5 + 'px'
+    })
+  </script>
+</body>
+</html>
